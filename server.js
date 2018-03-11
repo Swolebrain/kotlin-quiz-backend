@@ -26,7 +26,10 @@ const jwtValidator = jwt({
   algorithms: ['RS256', 'RS512']
 });
 
-app.get('/', (req, res) => res.send("Home route ---"));
+app.get('/', (req, res) => {
+  console.log("GET /");
+  res.send("Home route ---");
+});
 
 app.get('/questions', jwtValidator, function(req, res){
   console.log("GET /questions");
