@@ -26,12 +26,12 @@ const jwtValidator = jwt({
   algorithms: ['RS256', 'RS512']
 });
 
-app.get('/', (req, res) => {
+app.get('/kotlin', (req, res) => {
   console.log("GET /");
   res.send("Home route ---");
 });
 
-app.get('/questions', jwtValidator, function(req, res){
+app.get('/kotlin/questions', jwtValidator, function(req, res){
   console.log("GET /questions");
   if (!req.user.email.endsWith('@triplebyte.com') && req.user.email.toLowerCase() !== 'fermartel@gmail.com') return res.status(401).json([{question: 'Unauthorized', _id: 1}]);
   Question.find({})
@@ -40,7 +40,7 @@ app.get('/questions', jwtValidator, function(req, res){
     .catch(ress=>console.log(err));
 });
 
-app.post('/questions', jwtValidator,  function(req, res){
+app.post('/kotlin/questions', jwtValidator,  function(req, res){
   const q = new Question(req.body);
   q.createdDate = new Date().getTime();
   q.save()
