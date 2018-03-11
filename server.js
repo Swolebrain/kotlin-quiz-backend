@@ -19,7 +19,7 @@ app.use(bp.json());
 
 const jwtValidator = jwt({
   secret: fs.readFileSync('./.cert.pem'),
-  issuer: fs.readFileSync('./.client.js'),
+  issuer: require('./.client.js'),
   audience: '1iR1RS9dUJmtxfmELJAIHeVkyNVnyz8A',
   algorithms: ['RS256', 'RS512']
 });
