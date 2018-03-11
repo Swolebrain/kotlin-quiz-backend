@@ -26,9 +26,8 @@ const jwtValidator = jwt({
 });
 
 
-app.get('/kotlin/questions', jwtValidator, function(req, res){
+app.get('/kotlin/questions', function(req, res){
   console.log("GET /questions");
-  if (!req.user.email.endsWith('@triplebyte.com') && req.user.email.toLowerCase() !== 'fermartel@gmail.com') return res.status(401).json([{question: 'Unauthorized', _id: 1}]);
   Question.find({})
     .sort({createdDate: -1})
     .then(qs=>res.json(qs))
@@ -36,6 +35,8 @@ app.get('/kotlin/questions', jwtValidator, function(req, res){
 });
 
 app.post('/kotlin/questions', jwtValidator,  function(req, res){
+  console.log('POST /questions');
+  if (!req.user.email.endsWith('@triplebyte.com') && req.user.email.toLowerCase() !== 'fermartel@gmail.com') return res.status(401).json([{question: 'Unauthorized', _id: 1}]);
   const q = new Question(req.body);
   q.createdDate = new Date().getTime();
   q.save()
