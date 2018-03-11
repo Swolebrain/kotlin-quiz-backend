@@ -15,7 +15,7 @@ app.use((req, res, next) => {
   return next();
 });
 
-app.use(express.static('static'));
+app.use('/kotlin', express.static('static'));
 
 app.use(bp.json());
 
