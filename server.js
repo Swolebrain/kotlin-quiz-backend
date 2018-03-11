@@ -26,10 +26,6 @@ const jwtValidator = jwt({
   algorithms: ['RS256', 'RS512']
 });
 
-app.get('/kotlin', (req, res) => {
-  console.log("GET /");
-  res.send("Home route ---");
-});
 
 app.get('/kotlin/questions', jwtValidator, function(req, res){
   console.log("GET /questions");
