@@ -36,8 +36,12 @@ app.get('/kotlin/questions', function(req, res){
 
 app.post('/kotlin/questions', jwtValidator,  function(req, res){
   console.log('POST /questions');
-  if (!req.user.email.endsWith('@triplebyte.com') && req.user.email.toLowerCase() !== 'fermartel@gmail.com') return res.status(401).json([{question: 'Unauthorized', _id: 1}]);
+  if (!req.user.email.endsWith('@triplebyte.com') && 
+    !req.user.email.endsWith('@toptal.com') &&
+    req.user.email.toLowerCase() !== 'fermartel@gmail.com') 
+    return res.status(401).json([{question: 'Unauthorized', _id: 1}]);
   const q = new Question(req.body);
+  q.createdBy = req.user.email;
   q.createdDate = new Date().getTime();
   q.save()
     .then(dbRes => res.json(dbRes))

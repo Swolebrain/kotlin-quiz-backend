@@ -15,7 +15,9 @@ const QuestionSchema = mongoose.Schema({
   answerChoices: [{ answer: String, correct: Boolean }],
   questionType: String,
   adaptive: Boolean,
-  createdDate: Number
+  createdDate: Number,
+  createdBy: String,
+  subject: String
 });
 
 const Question = conn.model('Question', QuestionSchema);
