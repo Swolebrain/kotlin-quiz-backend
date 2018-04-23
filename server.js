@@ -10,7 +10,8 @@ const Question = require('./dbConnection.js');
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Method', 'OPTIONS,POST,GET,PATCH');
+  res.header('Access-Control-Allow-Method', 'OPTIONS,POST,GET,PUT,PATCH');
+  res.header('Access-Control-Allow-Methods', 'OPTIONS,POST,GET,PUT,PATCH');
   res.header('Access-Control-Allow-Headers', 'Content-Type,Accept,Authorization');
   return next();
 });
